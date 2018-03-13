@@ -86,6 +86,8 @@ if SERVICE_CONFIGURATIONS[:azure]
     test "creating new direct upload" do
       checksum = Digest::MD5.base64digest("Hello")
 
+      puts @config.except(:storage_access_key).inspect
+
       post rails_direct_uploads_url, params: { blob: {
         filename: "hello.txt", byte_size: 6, checksum: checksum, content_type: "text/plain" } }
 
